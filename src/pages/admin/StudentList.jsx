@@ -8,13 +8,14 @@ export default function StudentList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    (async ()=> {
+    (async () => {
       try {
         const resp = await apiFetch('/admin/users?role=student', {}, token);
-        setStudents(resp.data || resp);
+        const list = resp.data?.data || resp.data || [];
+        setStudents(list);
       } catch (err) {
         console.error(err);
-        setError(err.message || 'Unable to load students');
+        setError(err.message || 'Unable to load teachers');
       }
     })();
   }, [token]);

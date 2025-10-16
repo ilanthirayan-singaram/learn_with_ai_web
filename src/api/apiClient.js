@@ -3,7 +3,7 @@ import { API_V1 } from './config';
 export async function apiFetch(path, options = {}, token = null) {
   const base = API_BASE || '';
   const url = base.endsWith('/') ? base.slice(0, -1) + path : base + path;
-  alert(url);
+  
   const headers = {
     'Accept': 'application/json',
     ...(options.headers || {})

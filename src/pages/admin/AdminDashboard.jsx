@@ -23,7 +23,7 @@ export default function AdminDashboard() {
     let mounted = true;
     (async () => {
       try {
-        const data = await apiFetch('/user-counts', {}, token);
+        const data = await apiFetch('/v1/user-counts', {}, token);
         if (mounted) setStats(data.data || data);
       } catch (err) {
         console.error('Fetch stats error:', err);
