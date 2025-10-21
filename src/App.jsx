@@ -8,6 +8,7 @@ import TeacherLessonList from './pages/teacher/LessonList';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './layouts/MainLayout';
+import LessonList from "./pages/Admin/Lessons/LessonList";
 
 export default function App() {
   return (
@@ -55,6 +56,9 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/admin/lessons" element={<LessonList />} />
+
         <Route path="*" element={<div className="p-6">404 Not Found</div>} />
       </Routes>
     </BrowserRouter>
