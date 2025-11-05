@@ -1,11 +1,15 @@
 // src/api/lessonApi.js
 import axios from "axios";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_V1_URL ||
+  import.meta.env.VITE_API_URL ||
+  "/";
+
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || "/",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: API_BASE_URL,
+  headers: { "Content-Type": "application/json" },
 });
 
 // Add auth token interceptor if your admin panel uses one
