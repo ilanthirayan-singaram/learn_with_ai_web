@@ -12,7 +12,7 @@ export default function TeacherList() {
 
   async function loadTeachers() {
     try {
-      const resp = await apiFetch("/admin/users?role=teacher", {}, token);
+      const resp = await apiFetch("/api/admin/users?role=teacher", {}, token);
       const list = resp.data?.data || resp.data || [];
       setTeachers(list);
     } catch (err) {
@@ -31,7 +31,7 @@ export default function TeacherList() {
     setMessage("");
     try {
       const payload = { ...form, role: "teacher" }; // ✅ add the role field
-      const resp = await apiFetch("/admin/users/create", {
+      const resp = await apiFetch("/api/admin/users/create", {
         method: "POST",
         body: JSON.stringify(payload),
       }, token);

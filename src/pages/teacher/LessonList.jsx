@@ -16,7 +16,7 @@ export default function TeacherLessonList() {
   async function loadLessons(page = 1) {
     try {
       setLoading(true);
-      const resp = await apiFetch(`/teacher/lessons?page=${page}`, {}, token);
+      const resp = await apiFetch(`/api/teacher/lessons?page=${page}`, {}, token);
       const data = resp.data || {};
       setLessons(data.data || []);
       setMeta({
@@ -50,7 +50,7 @@ export default function TeacherLessonList() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/teacher/lessons`,
+        `${import.meta.env.VITE_API_URL}/api/teacher/lessons`,
         {
           method: "POST",
           headers: {

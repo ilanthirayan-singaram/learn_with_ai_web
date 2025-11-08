@@ -46,5 +46,28 @@ export const deleteLesson = async (id) => {
   const res = await api.delete(`/api/admin/lessons/${id}`);
   return res.data;
 };
+export const adminGetLessons = async ({ page = 1, perPage = 15, q = '', status = '' } = {}) => {
+  const res = await api.get('/admin/lessons', { params: { page, per_page: perPage, q, status } });
+  return res.data;
+};
 
+export const adminGetLesson = async (id) => {
+  const res = await api.get(`/admin/lessons/${id}`);
+  return res.data;
+};
+
+export const adminApproveLesson = async (id) => {
+  const res = await api.post(`/admin/lessons/${id}/approve`);
+  return res.data;
+};
+
+export const adminRejectLesson = async (id, payload = {}) => {
+  const res = await api.post(`/admin/lessons/${id}/reject`, payload);
+  return res.data;
+};
+
+export const adminDeleteLesson = async (id) => {
+  const res = await api.delete(`/admin/lessons/${id}`);
+  return res.data;
+};
 export default api;

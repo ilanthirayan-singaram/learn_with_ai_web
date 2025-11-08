@@ -10,7 +10,7 @@ export default function StudentList() {
   useEffect(() => {
     (async () => {
       try {
-        const resp = await apiFetch('/admin/users?role=student', {}, token);
+        const resp = await apiFetch('/api/admin/users?role=student', {}, token);
         const list = resp.data?.data || resp.data || [];
         setStudents(list);
       } catch (err) {

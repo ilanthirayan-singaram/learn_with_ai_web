@@ -9,7 +9,7 @@ export default function TeacherDashboard() {
   useEffect(() => {
     (async ()=> {
       try {
-        const resp = await apiFetch('/teacher/lessons', {}, token);
+        const resp = await apiFetch('/api/teacher/lessons', {}, token);
         const lessons = resp.data || resp || [];
         const lessonCount = Array.isArray(lessons) ? lessons.length : (lessons.lesson_count || 0);
         setStats({ lesson_count: lessonCount, student_count: lessons.student_count || 0 });

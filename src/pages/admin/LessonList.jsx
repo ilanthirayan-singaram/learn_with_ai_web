@@ -10,7 +10,7 @@ export default function AdminLessonList() {
   useEffect(() => {
     (async () => {
       try {
-        const resp = await apiFetch("/v1/lessons", {}, token);
+        const resp = await apiFetch("/api/v1/lessons", {}, token);
         const list = resp.data?.data || resp;
         setLessons(list);
       } catch (err) {
