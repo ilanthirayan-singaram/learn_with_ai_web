@@ -3,7 +3,7 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import TeacherList from './pages/admin/TeacherList';
 import StudentList from './pages/admin/StudentList';
-import AdminLessonList from './pages/admin/LessonList';
+import AdminLessonList from './pages/Admin//Lessons/LessonList';
 import TeacherLessonList from './pages/teacher/LessonList';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
