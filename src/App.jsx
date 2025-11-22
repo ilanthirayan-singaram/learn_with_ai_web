@@ -8,8 +8,7 @@ import TeacherLessonList from './pages/teacher/LessonList';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './layouts/MainLayout';
-import LessonList from "./pages/Admin/Lessons/LessonList";
-
+import CreateLesson from './pages/teacher/CreateLesson';
 export default function App() {
   return (
     <BrowserRouter>
@@ -39,6 +38,14 @@ export default function App() {
             <MainLayout><TeacherDashboard /></MainLayout>
           </ProtectedRoute>
         } />
+         <Route
+            path="/teacher/create-lesson"
+            element={
+              <ProtectedRoute role="teacher">
+                <CreateLesson />
+              </ProtectedRoute>
+            }
+          />
         <Route
           path="/admin/lessons"
           element={
@@ -56,8 +63,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
-        <Route path="/admin/lessons" element={<LessonList />} />
 
         <Route path="*" element={<div className="p-6">404 Not Found</div>} />
       </Routes>
