@@ -75,7 +75,7 @@ export default function TeacherDashboard() {
 
   function uploadLesson(e) {
     e.preventDefault();
-    const url = editing ? `/api/teacher/lessons/${editing.id}` : '/api/teacher/lessons';
+    const url = editing ? `${API_BASE}/api/teacher/lessons/${editing.id}` : `${API_BASE}/api/teacher/lessons`;
     const method = editing ? 'POST' : 'POST'; // backend will decide between create/update based on route
 
     const xhr = new XMLHttpRequest();
@@ -114,13 +114,14 @@ export default function TeacherDashboard() {
     };
 
     xhr.open('POST', url);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
     // Attach auth header if using token (example): xhr.setRequestHeader('Authorization', 'Bearer ' + token)
     xhr.send(fd);
   }
 
   async function togglePublish(lesson) {
     try {
-      const res = await fetch(`/api/teacher/lessons/${lesson.id}/toggle-publish`, { method: 'POST' });
+      const res = await fetch(`${API_BASE}/api/teacher/lessons/${lesson.id}/toggle-publish`, { method: 'POST' });
       const data = await res.json();
       if (data.status === 'success') fetchLessons();
     } catch (e) {
@@ -158,7 +159,10 @@ export default function TeacherDashboard() {
   async function removeLesson(lesson) {
     if (!confirm('Delete this lesson?')) return;
     try {
-      const res = await fetch(`/api/teacher/lessons/${lesson.id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE}/api/teacher/lessons/${lesson.id}`, { method: 'DELETE',  headers: {
+          'Accept': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        }});
       const data = await res.json();
       if (data.status === 'success') fetchLessons();
     } catch (e) {
