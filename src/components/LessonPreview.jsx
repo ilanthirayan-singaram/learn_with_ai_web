@@ -5,8 +5,11 @@ export default function LessonPreview({ lesson, onClose }) {
   if (!lesson) return null;
 
   const { title, subject, description, image_url, document_url, audio_url, video_url, created_at } = lesson;
+console.log('PREVIEW DATA', lesson);
+const { contents } = lesson;
 
   return (
+
     <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 p-6 overflow-y-auto">
       <div className="bg-white w-full max-w-4xl rounded shadow-lg p-6">
         <div className="flex items-start justify-between mb-4">
@@ -16,12 +19,17 @@ export default function LessonPreview({ lesson, onClose }) {
           </div>
           <button onClick={onClose} className="text-sm text-gray-600">Close</button>
         </div>
-
+        <div className="flex gap-2 mt-2">
+          {contents.images.length > 0 && <span title="Images">🖼️</span>}
+          {contents.videos.length > 0 && <span title="Videos">🎬</span>}
+          {contents.audios.length > 0 && <span title="Audios">🎧</span>}
+          {contents.documents.length > 0 && <span title="Documents">📄</span>}
+        </div>
         <div className="space-y-4">
           {/* Image */}
-          {image_url && (
+          {contents.images[0].url && (
             <div>
-              <img src={image_url} alt="lesson" className="max-h-48 w-auto rounded object-cover" />
+              <img src={contents.images[0].url} alt="lesson" className="max-h-48 w-auto rounded object-cover" />
             </div>
           )}
 
