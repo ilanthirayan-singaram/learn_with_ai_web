@@ -1,12 +1,42 @@
 // src/components/LessonPreview.jsx
 import React from 'react';
 
+const API_BASE = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/$/, "") : "";
+
 export default function LessonPreview({ lesson, onClose }) {
   if (!lesson) return null;
 
   const { title, subject, description, image_url, document_url, audio_url, video_url, created_at } = lesson;
 console.log('PREVIEW DATA', lesson);
 const { contents } = lesson;
+const hasAnyContent =
+  contents.images.length > 0 ||
+  contents.videos.length > 0 ||
+  contents.audios.length > 0 ||
+  contents.documents.length > 0;
+
+if (!hasAnyContent) {
+  return <div>No content available for preview</div>;
+}
+if (!lesson.contents.images.length) {
+  return <div>No images available for preview</div>;
+}
+
+const poster =
+  contents.images[0]?.url ||
+  contents.videos[0]?.meta?.thumbnail_url ||
+  undefined;
+  
+{contents.videos.map(v => (
+  <video
+    key={v.id}
+    src={v.url}
+    poster={poster}
+    controls
+  />
+))}
+
+
 
   return (
 
