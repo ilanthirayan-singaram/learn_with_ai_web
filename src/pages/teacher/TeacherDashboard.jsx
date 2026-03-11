@@ -121,7 +121,14 @@ export default function TeacherDashboard() {
 
   async function togglePublish(lesson) {
     try {
-      const res = await fetch(`${API_BASE}/api/teacher/lessons/${lesson.id}/toggle-publish`, { method: 'POST' });
+      const res = await fetch(`${API_BASE}/api/teacher/lessons/${lesson.id}/toggle-publish`, { method: 'POST',   // IMPORTANT
+ headers: {
+          'Accept': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        }
+
+
+});
       const data = await res.json();
       if (data.status === 'success') fetchLessons();
     } catch (e) {
@@ -200,7 +207,7 @@ export default function TeacherDashboard() {
               <div className="mt-3 flex items-center gap-2">
                 <button onClick={() => handlePreview(lesson.id)} className="px-2 py-1 border rounded text-sm">Preview</button>
                 <button onClick={() => openEdit(lesson)} className="px-2 py-1 border rounded text-sm">Edit</button>
-                <button onClick={() => togglePublish(lesson)} className="px-2 py-1 border rounded text-sm">{lesson.is_published ? 'Unpublish' : 'Publish'}</button>
+                <button onClick={() => togglePublish(lesson)} className="px-2 py-1 border rounded text-sm">{lesson.status}</button>
                 <button onClick={() => removeLesson(lesson)} className="px-2 py-1 border rounded text-sm text-red-600">Delete</button>
               </div>
             </div>

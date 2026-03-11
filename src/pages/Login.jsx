@@ -15,6 +15,8 @@ export default function Login() {
       const r = user.role || user.roles?.[0]?.name;
       if (r === 'admin') navigate('/admin');
       else if (r === 'teacher') navigate('/teacher');
+      else if (r === 'student') navigate('/student');
+      
     }
   }, [user, navigate]);
 
