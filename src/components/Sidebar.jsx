@@ -15,7 +15,10 @@ export default function Sidebar() {
           <Link to="/admin/teachers" className="px-3 py-2 rounded hover:bg-slate-700">Teachers</Link>
           <Link to="/admin/students" className="px-3 py-2 rounded hover:bg-slate-700">Students</Link>
           <Link to="/admin/lessons" className="px-3 py-2 rounded hover:bg-slate-700">Lessons</Link>
+          <Link to="/admin/payments/new" className="px-3 py-2 rounded hover:bg-slate-700">New Payment</Link>
+          <Link to="/admin/payments" className="px-3 py-2 rounded hover:bg-slate-700">Payment History</Link>
         </>}
+
         {role === 'teacher' && <>
           <Link to="/teacher" className="px-3 py-2 rounded hover:bg-slate-700">Dashboard</Link>
           <Link to="/teacher/lessons" className="px-3 py-2 rounded hover:bg-slate-700">Lessons</Link>

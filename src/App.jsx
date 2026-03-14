@@ -11,6 +11,9 @@ import MainLayout from './layouts/MainLayout';
 import CreateLesson from './pages/teacher/CreateLesson';
 import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentLesson from "./pages/student/StudentLesson";
+import PaymentEntry from "./pages/admin/payments/PaymentEntry";
+import PaymentHistory from "./pages/admin/payments/PaymentHistory";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -34,6 +37,10 @@ export default function App() {
             <MainLayout><StudentList /></MainLayout>
           </ProtectedRoute>
         } />
+
+        <Route path="/admin/payments" element={<PaymentHistory />} />
+        <Route path="/admin/payments/new" element={<PaymentEntry />} />
+
 
         <Route path="/teacher" element={
           <ProtectedRoute allowedRoles={['teacher']}>
@@ -69,6 +76,9 @@ export default function App() {
         <Route path="/student/lesson/:id" element={<StudentLesson />} />
         <Route path="*" element={<div className="p-6">404 Not Found</div>} />
       </Routes>
+
+
+      
     </BrowserRouter>
   );
 }
